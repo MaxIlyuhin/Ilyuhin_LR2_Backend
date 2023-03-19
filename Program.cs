@@ -1,4 +1,6 @@
 
+using Microsoft.EntityFrameworkCore;
+
 namespace Ilyuhin_LR2_Backend
 {
     public class Program
@@ -6,6 +8,9 @@ namespace Ilyuhin_LR2_Backend
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<DbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DbContext")));
 
             // Add services to the container.
 
